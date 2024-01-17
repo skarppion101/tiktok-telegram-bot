@@ -39,7 +39,7 @@ app.on('error', (err) => {
 listenOnPort(port);
 
 // Bot config token
-let token = 'YOUR_TOKEN_HERE'  //replace this part with your bot token
+let token = process.env.TELEGRAM_TOKEN
 const bot = new Telegraf(token, { polling: true });
 let Start = new Date();
 
@@ -91,7 +91,7 @@ bot.onText(/^\/runtime$/, (msg) => {
 bot.onText(/^\/start$/, (msg) => {
 const From = msg.chat.id;
 const caption = `
-Bot ini dirancang khusus untuk membantu Anda mendownload video TikTok secara otomatis. Cukup kirimkan URL video TikTok yang ingin Anda download, dan bot ini akan menyelesaikan tugasnya dengan cepat dan mudah!`
+Бот для загрузки видео`
 bot.sendMessage(From, caption);
 });
 
@@ -109,8 +109,6 @@ bot.on('message', async (msg) => {
         await bot.sendVideo(From, data.video[0], { caption: title });
         await sleep(3000)
         await bot.sendAudio(From, audio, { caption: title_audio });
-        await sleep(3000)
-        await bot.sendMessage(From, 'Powered by @wtffry');
     } catch (error) {
         bot.sendMessage(From, 'Sorry, an error occurred while downloading the TikTok video.');
         log(`[ ERROR ] ${From}: ${error.message}`, 'red');
