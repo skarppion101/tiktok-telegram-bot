@@ -1,13 +1,14 @@
+require('dotenv').config();
 const Telegraf = require('node-telegram-bot-api');
 const { ttdl } = require('btch-downloader');
 const util = require('util');
 const chalk = require('chalk');
 const figlet = require('figlet');
-const express = require('express'); 
+const express = require('express');
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 6001;
 
-// express 
+// express
 app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   const data = {
@@ -37,7 +38,7 @@ app.on('error', (err) => {
 
 listenOnPort(port);
 
-// Bot config token 
+// Bot config token
 let token = 'YOUR_TOKEN_HERE'  //replace this part with your bot token
 const bot = new Telegraf(token, { polling: true });
 let Start = new Date();
@@ -101,7 +102,7 @@ bot.on('message', async (msg) => {
   const body = /^https:\/\/.*tiktok\.com\/.+/;
    if (body.test(msg.text)) {
     const url = msg.text;
-    try {        
+    try {
         const data = await ttdl(url)
         const audio = data.audio[1]
         const { title, title_audio } = data;

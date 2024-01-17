@@ -4,18 +4,19 @@
   "description": "Simple Telegram Bot TikTok Downloader.",
   "main": "Telegraf.js",
   "scripts": {
-    "start": "Telegraf.js"
+    "start": "src/Telegraf.js"
   },
   "author": "Tio",
   "license": "ISC",
    "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "dependencies": {
     "btch-downloader": "2.3.1-alpha",
     "node-telegram-bot-api": "^0.52.0",
     "chalk": "^4.1.1",
     "express": "^4.18.2",
-    "figlet": "^1.6.0"
+    "figlet": "^1.6.0",
+    "dotenv": "^16.3.1"
   }
 }

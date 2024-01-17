@@ -1,0 +1,19 @@
+version: "3.6"
+
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: ./.docker/dev/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - .:/app
+    ports:
+      - 6001:6001
+    environment:
+      TELEGRAM_TOKEN: "TOKEN"
+      PORT: 6001
+    command: >
+      bash -c "cp -rfu /cache/node_modules/. /app/node_modules/  
+      && npm start"
